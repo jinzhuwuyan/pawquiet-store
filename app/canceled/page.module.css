@@ -1,0 +1,31 @@
+.main {
+  padding: 2.5rem 0 1rem;
+  max-width: 40rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  color: var(--sage-deep);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 0.82rem;
+}
+
+.main h1 {
+  margin: 0 0 0.8rem;
+  font-size: clamp(2.6rem, 6vw, 4rem);
+}
+
+.main p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 1.15rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.4rem;
+}

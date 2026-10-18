@@ -1,0 +1,27 @@
+{
+  "name": "pawquiet",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PawQuiet single-SKU storefront for the Quiet LED Pet Nail Grinder.",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev -H 0.0.0.0 -p 43123",
+    "build": "next build",
+    "start": "next start -H 0.0.0.0",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "next": "16.4.2",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "stripe": "^23.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.2",
+    "typescript": "^5"
+  }
+}

@@ -1,0 +1,50 @@
+.panel {
+  max-width: 40rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.4rem;
+}
+
+.facts {
+  display: grid;
+  gap: 0.7rem;
+  margin: 1rem 0;
+}
+
+.facts div {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 0.5rem;
+}
+
+.facts dt {
+  color: var(--ink-soft);
+}
+
+.facts dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.paid {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  border-radius: 16px;
+  background: var(--sage-soft);
+  color: var(--sage-deep);
+  font-weight: 700;
+}
+
+.pending,
+.error {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  border-radius: 16px;
+  background: #f8ebe4;
+  color: #6d332c;
+  font-weight: 700;
+}

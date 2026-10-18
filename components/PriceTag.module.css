@@ -1,0 +1,27 @@
+.lg,
+.md {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.now {
+  font-family: var(--font-display), Fraunces, serif;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.lg .now {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+}
+
+.md .now {
+  font-size: 2rem;
+}
+
+.was {
+  color: var(--clay);
+  font-size: 1.15rem;
+  text-decoration-thickness: 1px;
+}

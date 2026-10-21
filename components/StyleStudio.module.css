@@ -1,7 +1,54 @@
 .grid {
   display: grid;
   gap: 2rem;
-  align-items: center;
+  align-items: start;
+}
+
+.stage {
+  position: relative;
+  aspect-ratio: 1;
+  background: #f7f3eb;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.thumbs {
+  display: flex;
+  gap: 0.55rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+}
+
+.thumb {
+  position: relative;
+  flex: 0 0 72px;
+  width: 72px;
+  height: 72px;
+  padding: 0;
+  border-radius: 16px;
+  border: 1px solid #d9d0c2;
+  background: #f7f3eb;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.thumb[aria-current="true"] {
+  border-color: var(--sage-deep);
+  box-shadow: 0 0 0 2px var(--sage-deep);
+}
+
+.thumb:focus-visible {
+  outline: 2px solid var(--sage-deep);
+  outline-offset: 3px;
+}
+
+.note {
+  margin: 0.75rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
 }
 
 .details h1 {
@@ -22,7 +69,8 @@
 
 .byline,
 .ship,
-.fine {
+.fine,
+.singleColor {
   color: var(--ink-soft);
 }
 
@@ -68,11 +116,20 @@
   background: var(--sage-soft);
 }
 
+.singleColor {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 0 1.2rem;
+  font-weight: 700;
+}
+
 .swatch {
   width: 18px;
   height: 18px;
   border-radius: 50%;
   border: 1px solid rgba(36, 49, 43, 0.25);
+  flex: 0 0 auto;
 }
 
 .alert {

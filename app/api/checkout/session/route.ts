@@ -23,6 +23,8 @@ export async function GET(request: NextRequest) {
       color: null,
       sku: null,
       product: null,
+      slug: null,
+      shipping_note: null,
       message:
         "Stripe is not configured, so payment status cannot be verified.",
     };
@@ -42,6 +44,8 @@ export async function GET(request: NextRequest) {
       color: session.metadata?.color ?? null,
       sku: session.metadata?.sku ?? null,
       product: session.metadata?.product ?? null,
+      slug: session.metadata?.slug ?? null,
+      shipping_note: session.metadata?.shipping_note ?? null,
     };
     return NextResponse.json(summary, {
       headers: { "Cache-Control": "no-store" },

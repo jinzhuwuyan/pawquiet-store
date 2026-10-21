@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FOOTER_LINKS, PRODUCT } from "@/lib/product";
+import { FOOTER_LINKS, STORE } from "@/lib/product";
 import styles from "./SiteFooter.module.css";
 
 export function SiteFooter() {
@@ -8,7 +8,7 @@ export function SiteFooter() {
       <div className={`shell ${styles.inner}`}>
         <div>
           <p className={styles.brand}>PawQuiet</p>
-          <p className={styles.copy}>{PRODUCT.footer}</p>
+          <p className={styles.copy}>{STORE.footer}</p>
         </div>
         <nav className={styles.links} aria-label="Footer">
           {FOOTER_LINKS.map((link) => (

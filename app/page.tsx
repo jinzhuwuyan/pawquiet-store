@@ -1,48 +1,50 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PriceTag } from "@/components/PriceTag";
-import { ProductArt } from "@/components/ProductArt";
-import { DEFAULT_COLOR, FEATURES, PRODUCT, READY_POINTS } from "@/lib/product";
+import { StyleGrid } from "@/components/StyleGrid";
+import { HOME_POINTS, STORE } from "@/lib/product";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "Quiet LED Pet Nail Grinder",
-  description: PRODUCT.subhead,
+  title: "Quiet LED pet nail grinders",
+  description: STORE.subhead,
 };
 
 export default function HomePage() {
   return (
     <main>
       <section className={`shell ${styles.hero}`}>
-        <div>
-          <p className={styles.eyebrow}>{PRODUCT.eyebrow}</p>
-          <h1>{PRODUCT.name}</h1>
-          <p className={styles.subhead}>{PRODUCT.subhead}</p>
-          <PriceTag />
-          <p className={styles.ship}>{PRODUCT.shippingNote}</p>
-          <div className={styles.actions}>
-            <Link className="btn btnPrimary" href="/product">
-              Shop now
-            </Link>
-            <Link className="btn btnSecondary" href="/#calm">
-              See why it&apos;s quieter
-            </Link>
-          </div>
-          <p className={styles.trust}>{PRODUCT.trust}</p>
+        <p className={styles.eyebrow}>{STORE.eyebrow}</p>
+        <h1>{STORE.title}</h1>
+        <p className={styles.subhead}>{STORE.subhead}</p>
+        <div className={styles.actions}>
+          <Link className="btn btnPrimary" href="/#styles">
+            Shop the four styles
+          </Link>
+          <Link className="btn btnSecondary" href="/shipping">
+            Shipping times
+          </Link>
         </div>
-        <ProductArt color={DEFAULT_COLOR} priority />
+        <p className={styles.trust}>{STORE.trust}</p>
+      </section>
+
+      <section id="styles" className={`shell ${styles.section}`}>
+        <div className={styles.sectionHead}>
+          <h2>{STORE.catalogTitle}</h2>
+          <p>{STORE.catalogBlurb}</p>
+        </div>
+        <StyleGrid titleAs="h3" />
       </section>
 
       <section id="calm" className={`shell ${styles.section}`}>
         <div className={styles.sectionHead}>
-          <h2>{PRODUCT.sectionTitle}</h2>
-          <p>{PRODUCT.sectionBlurb}</p>
+          <h2>{STORE.careTitle}</h2>
+          <p>{STORE.careBlurb}</p>
         </div>
         <ul className={styles.features}>
-          {FEATURES.map((feature) => (
-            <li key={feature.title}>
-              <h3>{feature.title}</h3>
-              <p>{feature.body}</p>
+          {HOME_POINTS.map((point) => (
+            <li key={point.title}>
+              <h3>{point.title}</h3>
+              <p>{point.body}</p>
             </li>
           ))}
         </ul>
@@ -50,19 +52,20 @@ export default function HomePage() {
 
       <section className={`shell ${styles.ready}`}>
         <div>
-          <h2>{PRODUCT.readyTitle}</h2>
+          <h2>Ready when you are</h2>
           <ul>
-            {READY_POINTS.map((point) => (
-              <li key={point}>{point}</li>
-            ))}
+            <li>Four styles, one price — $34.99</li>
+            <li>US shipping, with the window listed on each style</li>
+            <li>30-day returns on unused items</li>
+            <li>Grooming tool only — not a veterinary device</li>
           </ul>
         </div>
         <div className={styles.actions}>
           <Link className="btn btnPrimary" href="/product">
-            Shop the grinder
+            Shop all styles
           </Link>
-          <Link className="btn btnSecondary" href="/product">
-            View product details — $34.99
+          <Link className="btn btnSecondary" href="/#styles">
+            Compare on this page
           </Link>
         </div>
       </section>

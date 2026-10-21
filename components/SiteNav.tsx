@@ -11,7 +11,10 @@ export function SiteNav() {
   return (
     <nav className={styles.nav} aria-label="Primary">
       {NAV_LINKS.map((link) => {
-        const active = pathname === link.href;
+        const active =
+          link.href === "/product"
+            ? pathname === "/product" || pathname.startsWith("/product/")
+            : pathname === link.href;
         return (
           <Link
             key={link.href}

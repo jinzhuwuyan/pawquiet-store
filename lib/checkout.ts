@@ -1,5 +1,8 @@
 import type Stripe from "stripe";
-import { PRODUCT, type ProductColor } from "@/lib/product";
+import {
+  checkoutLineItemName,
+  type CatalogStyle,
+} from "@/lib/catalog";
 
 export const PREFERRED_PAYMENT_METHOD_TYPES = [
   "card",
@@ -19,15 +22,22 @@ export type CheckoutSessionSummary = {
   color: string | null;
   sku: string | null;
   product: string | null;
+  slug: string | null;
+  shipping_note: string | null;
   message?: string;
 };
 
-export function checkoutMetadata(color: ProductColor): Record<string, string> {
+export function checkoutMetadata(
+  style: CatalogStyle,
+  color: string,
+): Record<string, string> {
   return {
-    sku: PRODUCT.sku,
-    product: PRODUCT.name,
+    sku: style.sku,
+    product: style.name,
+    slug: style.slug,
     color,
-    shipping_note: PRODUCT.shippingNote,
+    line_item_name: checkoutLineItemName(style, color),
+    shipping_note: style.shippingNote,
   };
 }
 

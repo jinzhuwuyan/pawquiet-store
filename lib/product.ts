@@ -1,94 +1,43 @@
-export const PRODUCT = {
+import { PRICE_LABEL } from "@/lib/catalog";
+
+export const STORE = {
   brand: "PawQuiet",
-  name: "Quiet LED Pet Nail Grinder",
-  sku: "PNG-LED-01",
-  priceCents: 3499,
-  priceLabel: "$34.99",
-  compareAtLabel: "$49.99",
-  currency: "usd",
-  shippingNote: "Ships to the US in about 7–15 business days",
-  eyebrow: "New · Rechargeable · LED",
-  subhead: "Gentle nail care for cats & dogs — quiet, lit, and easy to hold.",
-  badge: "In stock · ships from partner warehouse",
-  buyLabel: "Buy now — $34.99",
+  eyebrow: "Four styles · USB rechargeable · LED",
+  title: "Quiet nail care, four ways",
+  subhead:
+    "LED pet nail grinders for cats and dogs. Choose a style, then check out.",
   finePrint:
     "One checkout — Stripe shows every channel that is enabled for your currency and device (*wallets need Safari/Chrome support). Preview runs in test mode. Grooming tool only — not a veterinary device.",
-  sectionTitle: "Built for calm nail days",
-  sectionBlurb:
-    "Four things that make at-home trimming less stressful for you and your pet — without medical claims or gimmicks.",
-  readyTitle: "Ready when you are",
+  buyLabel: `Buy now — ${PRICE_LABEL}`,
   trust:
-    "Ships to the US · 7–15 business days · 30-day returns · Dropship · no warehouse wait",
+    "Ships to the US · 30-day returns on unused items · Grooming tool only — not a veterinary device.",
   footer:
     "Thoughtful at-home nail care for cats and dogs. © 2026 PawQuiet. For grooming use only — not a medical device.",
+  badge: "In stock",
+  catalogTitle: "Four styles",
+  catalogBlurb:
+    "Each one is $34.99. The shipping window is listed on the style you pick.",
+  careTitle: "Before you trim",
+  careBlurb:
+    "The same calm routine, whichever style you take home. These are grooming tools, not medical devices.",
 } as const;
 
-export const COLORS = [
-  { name: "Sage Green", swatch: "#7E967C" },
-  { name: "Soft White", swatch: "#F7F4EE" },
-] as const;
-
-export type ProductColor = (typeof COLORS)[number]["name"];
-
-export const DEFAULT_COLOR: ProductColor = "Sage Green";
-
-export function isProductColor(value: unknown): value is ProductColor {
-  return value === "Sage Green" || value === "Soft White";
-}
-
-export const FEATURES = [
+export const HOME_POINTS = [
   {
-    title: "Quiet motor",
-    body: "Low-noise design so most pets stay calm during a quick trim.",
+    title: "LED on every style",
+    body: "Each grinder has a light so the nail is easier to see.",
   },
   {
-    title: "LED tip light",
-    body: "See the nail clearly — less guesswork, more even results.",
+    title: "USB rechargeable",
+    body: "Charge before the first trim. No loose batteries to swap.",
   },
   {
-    title: "Safe grinding ports",
-    body: "Sized ports help guide nails away from the spinning tip.",
+    title: "For cats and dogs",
+    body: "Keep sessions short, introduce the sound first, and stop if your pet is stressed.",
   },
   {
-    title: "5 speed settings",
-    body: "Dial up for thick dog nails or keep it soft for cats and small breeds.",
-  },
-] as const;
-
-export const READY_POINTS = [
-  "Rechargeable USB charging",
-  "5 adjustable speeds",
-  "Built-in LED light",
-  "For cats and dogs",
-  "Includes replacement grinding heads",
-  "Compact, one-hand grip",
-] as const;
-
-export const FAQS = [
-  {
-    question: "Is it safe for cats and small dogs?",
-    answer:
-      "Yes — start on the lowest speed, keep sessions short, and stop if your pet seems stressed. The ports help keep nails aligned with the grinding surface.",
-  },
-  {
-    question: "How loud is it?",
-    answer:
-      "It is designed to run quieter than many clippers. Pets vary — introduce the sound before the first trim.",
-  },
-  {
-    question: "How long does shipping take?",
-    answer:
-      "Orders to the United States usually arrive in 7–15 business days via our dropship partners. Tracking is emailed after fulfillment.",
-  },
-  {
-    question: "What is your return window?",
-    answer:
-      "We offer a 30-day return window for unused items in original packaging. See the Refunds page for details.",
-  },
-  {
-    question: "Does it come with batteries?",
-    answer:
-      "It uses a built-in rechargeable battery. Charge fully before first use with the included USB cable.",
+    title: "Grooming use only",
+    body: "PawQuiet tools are for at-home nail care. They are not veterinary devices.",
   },
 ] as const;
 

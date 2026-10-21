@@ -8,7 +8,7 @@ import {
   isErrorBody,
   type CheckoutSessionSummary,
 } from "@/lib/checkout";
-import { PRODUCT } from "@/lib/product";
+import { isStyleSlug, styleHref } from "@/lib/catalog";
 import styles from "./CheckoutStatus.module.css";
 
 type Phase =
@@ -64,6 +64,11 @@ export function CheckoutStatus() {
     };
   }, [sessionId]);
 
+  const productHref =
+    phase.kind === "ready" && phase.summary.slug && isStyleSlug(phase.summary.slug)
+      ? styleHref(phase.summary.slug)
+      : "/product";
+
   return (
     <div className={styles.panel}>
       <StatusBody phase={phase} hasSession={Boolean(sessionId)} />
@@ -71,8 +76,8 @@ export function CheckoutStatus() {
         <Link className="btn btnPrimary" href="/">
           Back home
         </Link>
-        <Link className="btn btnSecondary" href="/product">
-          View product
+        <Link className="btn btnSecondary" href={productHref}>
+          {productHref === "/product" ? "View the shop" : "View this style"}
         </Link>
       </div>
     </div>
@@ -124,17 +129,17 @@ function ReadySummary({ summary }: { summary: CheckoutSessionSummary }) {
     <div>
       <p className={summary.paid ? styles.paid : styles.pending} role="status">
         {summary.paid
-          ? "Payment received. Your Quiet LED Pet Nail Grinder is confirmed."
-          : "This checkout is not paid yet. You can return to the product and try again."}
+          ? `Payment received. ${summary.product ?? "Your PawQuiet order"}${summary.color ? ` in ${summary.color}` : ""} is confirmed.`
+          : "This checkout is not paid yet. You can return to the shop and try again."}
       </p>
       <dl className={styles.facts}>
         <div>
           <dt>Product</dt>
-          <dd>{summary.product ?? PRODUCT.name}</dd>
+          <dd>{summary.product ?? "PawQuiet"}</dd>
         </div>
         <div>
           <dt>SKU</dt>
-          <dd>{summary.sku ?? PRODUCT.sku}</dd>
+          <dd>{summary.sku ?? "—"}</dd>
         </div>
         <div>
           <dt>Color</dt>
@@ -153,7 +158,11 @@ function ReadySummary({ summary }: { summary: CheckoutSessionSummary }) {
           </div>
         ) : null}
       </dl>
-      <p>{PRODUCT.shippingNote}. Tracking is emailed after fulfillment.</p>
+      <p>
+        {summary.shipping_note
+          ? `${summary.shipping_note}. Tracking is emailed after fulfillment.`
+          : "Tracking is emailed after fulfillment."}
+      </p>
     </div>
   );
 }

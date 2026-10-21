@@ -1,98 +1,24 @@
-.top {
-  padding: 2rem 0 0.5rem;
+.shop {
+  padding: 2rem 0 1rem;
 }
 
-.block {
-  padding-top: 3rem;
-}
-
-.block h2 {
-  margin: 0 0 0.7rem;
-  font-size: clamp(2rem, 4vw, 2.8rem);
-}
-
-.blurb {
-  margin: 0 0 1rem;
-  max-width: 42rem;
-  color: var(--ink-soft);
-}
-
-.features,
-.ready {
-  list-style: none;
+.eyebrow {
   margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 0.8rem;
-}
-
-.features li {
-  background: var(--paper);
-  border-radius: 20px;
-  padding: 1rem 1.1rem;
-  border: 1px solid rgba(36, 49, 43, 0.06);
-}
-
-.features h3 {
-  margin: 0 0 0.3rem;
-  font-size: 1.35rem;
-}
-
-.features p,
-.faq p {
-  margin: 0;
-  color: var(--ink-soft);
-}
-
-.ready li {
-  position: relative;
-  padding-left: 1.3rem;
-}
-
-.ready li::before {
-  content: "";
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 50%;
-  background: var(--sage);
-  position: absolute;
-  left: 0;
-  top: 0.55rem;
-}
-
-.faq details {
-  border-top: 1px solid var(--line);
-  padding: 0.9rem 0;
-}
-
-.faq details:last-child {
-  border-bottom: 1px solid var(--line);
-}
-
-.faq summary {
-  cursor: pointer;
-  font-weight: 750;
-  font-size: 1.08rem;
-}
-
-.faq p {
-  margin-top: 0.55rem;
-  max-width: 42rem;
-}
-
-.links {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.links a {
   color: var(--sage-deep);
   font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.82rem;
 }
 
-@media (min-width: 800px) {
-  .features {
-    grid-template-columns: 1fr 1fr;
-  }
+.shop h1 {
+  margin: 0.35rem 0 0.6rem;
+  font-size: clamp(2.6rem, 6vw, 4rem);
+}
+
+.intro {
+  margin: 0 0 1.4rem;
+  max-width: 36rem;
+  color: var(--ink-soft);
+  font-size: 1.15rem;
 }

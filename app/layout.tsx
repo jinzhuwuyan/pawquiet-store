@@ -21,11 +21,11 @@ const sourceSans = Source_Sans_3({
 export const metadata: Metadata = {
   metadataBase: metadataBaseUrl(),
   title: {
-    default: "PawQuiet — Quiet LED Pet Nail Grinder",
+    default: "PawQuiet — Quiet LED pet nail grinders",
     template: "%s · PawQuiet",
   },
   description:
-    "Gentle nail care for cats & dogs — quiet, lit, and easy to hold.",
+    "Four LED pet nail grinders for cats and dogs. Choose a style, then check out.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

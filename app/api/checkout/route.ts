@@ -5,7 +5,12 @@ import {
   isPaymentMethodRejection,
   PREFERRED_PAYMENT_METHOD_TYPES,
 } from "@/lib/checkout";
-import { isProductColor, PRODUCT } from "@/lib/product";
+import {
+  checkoutLineItemName,
+  findStyle,
+  isStyleColor,
+  isStyleSlug,
+} from "@/lib/catalog";
 import { resolveSiteUrl } from "@/lib/site";
 import { getStripe } from "@/lib/stripe";
 
@@ -15,19 +20,25 @@ export async function POST(request: NextRequest) {
     body = await request.json();
   } catch {
     return NextResponse.json(
-      { error: "Send a JSON body with a color." },
+      { error: "Send a JSON body with a style and a color." },
       { status: 400 },
     );
   }
 
-  const color =
-    typeof body === "object" && body !== null && "color" in body
-      ? body.color
-      : undefined;
+  const slug = readField(body, "slug");
+  const color = readField(body, "color");
 
-  if (!isProductColor(color)) {
+  if (!isStyleSlug(slug)) {
     return NextResponse.json(
-      { error: "Choose Sage Green or Soft White." },
+      { error: "Choose a PawQuiet style." },
+      { status: 400 },
+    );
+  }
+
+  const style = findStyle(slug);
+  if (!style || !isStyleColor(style, color)) {
+    return NextResponse.json(
+      { error: "Choose a color for this style." },
       { status: 400 },
     );
   }
@@ -44,20 +55,21 @@ export async function POST(request: NextRequest) {
   }
 
   const siteUrl = resolveSiteUrl(request);
-  const metadata = checkoutMetadata(color);
+  const metadata = checkoutMetadata(style, color);
   const base: Stripe.Checkout.SessionCreateParams = {
     mode: "payment",
     line_items: [
       {
         quantity: 1,
         price_data: {
-          currency: PRODUCT.currency,
-          unit_amount: PRODUCT.priceCents,
+          currency: "usd",
+          unit_amount: style.priceCents,
           product_data: {
-            name: PRODUCT.name,
-            description: `${color}. ${PRODUCT.shippingNote}`,
+            name: checkoutLineItemName(style, color),
+            description: style.shippingNote,
             metadata: {
-              sku: PRODUCT.sku,
+              sku: style.sku,
+              slug: style.slug,
               color,
             },
           },
@@ -87,6 +99,14 @@ export async function POST(request: NextRequest) {
         : "Stripe could not open checkout.";
     return NextResponse.json({ error: message }, { status: 502 });
   }
+}
+
+function readField(body: unknown, key: string): unknown {
+  if (typeof body !== "object" || body === null || !(key in body)) {
+    return undefined;
+  }
+  const record = body as Record<string, unknown>;
+  return record[key];
 }
 
 async function createCheckoutSession(

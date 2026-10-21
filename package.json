@@ -2,7 +2,7 @@
   "name": "pawquiet",
   "version": "1.0.0",
   "private": true,
-  "description": "PawQuiet single-SKU storefront for the Quiet LED Pet Nail Grinder.",
+  "description": "PawQuiet storefront for four LED pet nail-care styles.",
   "license": "MIT",
   "scripts": {
     "dev": "next dev -H 0.0.0.0 -p 43123",

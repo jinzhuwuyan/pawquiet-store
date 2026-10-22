@@ -1,4 +1,6 @@
-import { PRICE_LABEL } from "@/lib/catalog";
+import { stylePriceRoster } from "@/lib/catalog";
+
+const PRICE_ROSTER = stylePriceRoster();
 
 export const STORE = {
   brand: "PawQuiet",
@@ -8,15 +10,15 @@ export const STORE = {
     "LED pet nail grinders for cats and dogs. Choose a style, then check out.",
   finePrint:
     "One checkout — Stripe shows every channel that is enabled for your currency and device (*wallets need Safari/Chrome support). Preview runs in test mode. Grooming tool only — not a veterinary device.",
-  buyLabel: `Buy now — ${PRICE_LABEL}`,
   trust:
     "Ships to the US · 30-day returns on unused items · Grooming tool only — not a veterinary device.",
   footer:
     "Thoughtful at-home nail care for cats and dogs. © 2026 PawQuiet. For grooming use only — not a medical device.",
   badge: "In stock",
   catalogTitle: "Four styles",
-  catalogBlurb:
-    "Each one is $34.99. The shipping window is listed on the style you pick.",
+  catalogBlurb: `${PRICE_ROSTER}. The shipping window is listed on the style you pick.`,
+  priceRoster: PRICE_ROSTER,
+  shopDescription: `Four PawQuiet LED nail-care styles for cats and dogs. ${PRICE_ROSTER}.`,
   careTitle: "Before you trim",
   careBlurb:
     "The same calm routine, whichever style you take home. These are grooming tools, not medical devices.",

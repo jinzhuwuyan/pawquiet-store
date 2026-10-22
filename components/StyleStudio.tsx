@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { PriceTag } from "@/components/PriceTag";
-import type { CatalogStyle } from "@/lib/catalog";
+import { buyNowLabel, type CatalogStyle } from "@/lib/catalog";
 import { isErrorBody } from "@/lib/checkout";
 import { PAYMENT_CHIPS, STORE } from "@/lib/product";
 import styles from "./StyleStudio.module.css";
@@ -150,7 +150,7 @@ export function StyleStudio({ style }: { style: CatalogStyle }) {
           disabled={pending}
           aria-busy={pending}
         >
-          {pending ? "Opening checkout…" : STORE.buyLabel}
+          {pending ? "Opening checkout…" : buyNowLabel(style)}
         </button>
         {error ? (
           <p className={styles.alert} role="alert">

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { StyleStudio } from "@/components/StyleStudio";
-import { findStyle } from "@/lib/catalog";
+import { findStyle, offerPrice } from "@/lib/catalog";
 import { STORE } from "@/lib/product";
 import styles from "./page.module.css";
 
@@ -48,7 +48,7 @@ export default async function ProductStylePage(
     offers: {
       "@type": "Offer",
       priceCurrency: "USD",
-      price: "34.99",
+      price: offerPrice(style.priceCents),
       availability: "https://schema.org/InStock",
       url: `/product/${style.slug}`,
       areaServed: "US",

@@ -1,6 +1,3 @@
-export const PRICE_CENTS = 3499;
-export const PRICE_LABEL = "$34.99";
-
 export const STYLE_SLUGS = ["classic", "duo", "lite", "factory"] as const;
 
 export type StyleSlug = (typeof STYLE_SLUGS)[number];
@@ -61,8 +58,8 @@ const CLASSIC: CatalogStyle = {
   slug: "classic",
   name: "PawQuiet Classic 5-Speed",
   sku: "PNG-LED-CLASSIC",
-  priceCents: PRICE_CENTS,
-  priceLabel: PRICE_LABEL,
+  priceCents: 3499,
+  priceLabel: "$34.99",
   compareAtLabel: "$49.99",
   blurb:
     "A rechargeable 5-speed LED grinder with a quiet motor, a tip light, and three grinding ports.",
@@ -154,8 +151,8 @@ const DUO: CatalogStyle = {
   slug: "duo",
   name: "PawQuiet Duo Clip+Grind",
   sku: "PNG-LED-DUO",
-  priceCents: PRICE_CENTS,
-  priceLabel: PRICE_LABEL,
+  priceCents: 3199,
+  priceLabel: "$31.99",
   compareAtLabel: "$49.99",
   blurb: "A 2-in-1 clipper and grinder with dual LED lights, for cats and dogs.",
   shippingNote: "Ships to the US in about 7–15 business days",
@@ -232,9 +229,9 @@ const LITE: CatalogStyle = {
   slug: "lite",
   name: "PawQuiet Lite Green",
   sku: "PNG-LED-LITE",
-  priceCents: PRICE_CENTS,
-  priceLabel: PRICE_LABEL,
-  compareAtLabel: "$44.99",
+  priceCents: 1999,
+  priceLabel: "$19.99",
+  compareAtLabel: "$39.99",
   blurb:
     "An entry LED grinder for everyday trims — USB rechargeable, with an assist light.",
   shippingNote: "Ships to the US in about 7–15 business days",
@@ -316,9 +313,9 @@ const FACTORY: CatalogStyle = {
   slug: "factory",
   name: "PawQuiet Factory 5-Speed",
   sku: "PNG-LED-FACTORY",
-  priceCents: PRICE_CENTS,
-  priceLabel: PRICE_LABEL,
-  compareAtLabel: "$49.99",
+  priceCents: 2799,
+  priceLabel: "$27.99",
+  compareAtLabel: "$44.99",
   blurb:
     "A USB rechargeable 5-speed grinder with a bright LED, in sage green or soft white.",
   shippingNote: "Ships to the US in about 10–20 business days",
@@ -387,6 +384,40 @@ const FACTORY: CatalogStyle = {
 };
 
 export const STYLES: readonly CatalogStyle[] = [CLASSIC, DUO, LITE, FACTORY];
+
+const SHORT_NAME: Record<StyleSlug, string> = {
+  classic: "Classic",
+  duo: "Duo",
+  lite: "Lite",
+  factory: "Factory",
+};
+
+function expectedPriceLabel(cents: number): string {
+  return `$${(cents / 100).toFixed(2)}`;
+}
+
+for (const style of STYLES) {
+  const expected = expectedPriceLabel(style.priceCents);
+  if (style.priceLabel !== expected) {
+    throw new Error(
+      `${style.slug} priceLabel ${style.priceLabel} does not match ${style.priceCents} cents (${expected}).`,
+    );
+  }
+}
+
+export function stylePriceRoster(): string {
+  return STYLES.map((style) => `${SHORT_NAME[style.slug]} ${style.priceLabel}`).join(
+    ", ",
+  );
+}
+
+export function buyNowLabel(style: CatalogStyle): string {
+  return `Buy now — ${style.priceLabel}`;
+}
+
+export function offerPrice(cents: number): string {
+  return (cents / 100).toFixed(2);
+}
 
 export function isStyleSlug(value: unknown): value is StyleSlug {
   return (

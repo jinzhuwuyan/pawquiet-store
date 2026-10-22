@@ -1,13 +1,13 @@
 # PawQuiet
 
-Storefront for four PawQuiet LED pet nail-care styles. Each style is **$34.99**. US shipping and Stripe Checkout. No accounts, no CMS, and no inventory admin.
+Storefront for four PawQuiet LED pet nail-care styles. Prices are Classic **$34.99**, Duo **$31.99**, Lite **$19.99**, and Factory **$27.99**. US shipping and Stripe Checkout. No accounts, no CMS, and no inventory admin.
 
-| Style | Path | Public SKU | Colors | Compare at |
-| --- | --- | --- | --- | --- |
-| PawQuiet Classic 5-Speed | `/product/classic` | `PNG-LED-CLASSIC` | Sage Green, Soft White | $49.99 |
-| PawQuiet Duo Clip+Grind | `/product/duo` | `PNG-LED-DUO` | Sage Green, Soft White, Soft Pink | $49.99 |
-| PawQuiet Lite Green | `/product/lite` | `PNG-LED-LITE` | Sage Green | $44.99 |
-| PawQuiet Factory 5-Speed | `/product/factory` | `PNG-LED-FACTORY` | Sage Green, Soft White | $49.99 |
+| Style | Path | Public SKU | Colors | Price | Compare at |
+| --- | --- | --- | --- | --- | --- |
+| PawQuiet Classic 5-Speed | `/product/classic` | `PNG-LED-CLASSIC` | Sage Green, Soft White | $34.99 | $49.99 |
+| PawQuiet Duo Clip+Grind | `/product/duo` | `PNG-LED-DUO` | Sage Green, Soft White, Soft Pink | $31.99 | $49.99 |
+| PawQuiet Lite Green | `/product/lite` | `PNG-LED-LITE` | Sage Green | $19.99 | $39.99 |
+| PawQuiet Factory 5-Speed | `/product/factory` | `PNG-LED-FACTORY` | Sage Green, Soft White | $27.99 | $44.99 |
 
 Classic, Duo, and Lite ship to the US in about 7–15 business days. Factory 5-Speed ships in about 10–20 business days. Lite Green is the entry LED grinder and does not list a speed count.
 
@@ -65,10 +65,10 @@ NEXT_PUBLIC_SITE_URL=http://127.0.0.1:43123
 `STRIPE_PUBLISHABLE_KEY` is optional. Hosted Checkout does not use it.
 
 4. In the Stripe Dashboard, turn on the payment methods you want under **Settings → Payment methods**: Card, Link, PayPal, Cash App Pay, and Amazon Pay.
-5. Restart `npm run dev`, open a style such as `/product/classic`, choose a color, and press **Buy now — $34.99**.
+5. Restart `npm run dev`, open a style such as `/product/classic`, choose a color, and press **Buy now** with that style's price (Classic is **Buy now — $34.99**).
 6. Pay with the test card `4242 4242 4242 4242`, any future expiry, any CVC, and any US ZIP. Stripe sends you to `/success?session_id=cs_test_...`.
 
-`POST /api/checkout` expects JSON `{ "slug": "classic", "color": "Sage Green" }`. It creates a Checkout Session in `payment` mode for one line at 3499 cents (USD). The line item name is the style plus the color, for example `PawQuiet Classic 5-Speed — Sage Green`. Metadata is `sku`, `product`, `slug`, `color`, `line_item_name`, and `shipping_note`. The session first asks for `payment_method_types` of `card`, `link`, `paypal`, `cashapp`, and `amazon_pay`. If that Stripe API version rejects the field, it retries with `allowed_payment_method_types`. If a method is not enabled on the account, it opens Checkout with the methods your Dashboard already allows. Apple Pay and Google Pay are wallets on the card method; they show when the browser supports them. The page lists them as chips only.
+`POST /api/checkout` expects JSON `{ "slug": "classic", "color": "Sage Green" }`. It creates a Checkout Session in `payment` mode for one line at that style's `priceCents` (USD): Classic 3499, Duo 3199, Lite 1999, Factory 2799. The line item name is the style plus the color, for example `PawQuiet Classic 5-Speed — Sage Green`. Metadata is `sku`, `product`, `slug`, `color`, `line_item_name`, and `shipping_note`. The session first asks for `payment_method_types` of `card`, `link`, `paypal`, `cashapp`, and `amazon_pay`. If that Stripe API version rejects the field, it retries with `allowed_payment_method_types`. If a method is not enabled on the account, it opens Checkout with the methods your Dashboard already allows. Apple Pay and Google Pay are wallets on the card method; they show when the browser supports them. The page lists them as chips only.
 
 Without `STRIPE_SECRET_KEY`, Buy stays on the product page and explains that checkout is not configured.
 

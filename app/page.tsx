@@ -54,7 +54,7 @@ export default function HomePage() {
         <div>
           <h2>Ready when you are</h2>
           <ul>
-            <li>Four styles, one price — $34.99</li>
+            <li>Four styles — {STORE.priceRoster}</li>
             <li>US shipping, with the window listed on each style</li>
             <li>30-day returns on unused items</li>
             <li>Grooming tool only — not a veterinary device</li>

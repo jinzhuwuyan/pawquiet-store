@@ -5,8 +5,7 @@ import styles from "./page.module.css";
 
 export const metadata: Metadata = {
   title: "Shop",
-  description:
-    "Four PawQuiet LED nail-care styles for cats and dogs. $34.99 each.",
+  description: STORE.shopDescription,
 };
 
 export default function ShopPage() {
